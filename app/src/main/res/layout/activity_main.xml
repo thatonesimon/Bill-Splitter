@@ -34,11 +34,11 @@
         android:onClick="addPerson" />
 
     <TextView
-        android:text="Names of People"
+        android:text="No one on the list yet..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/people"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_marginTop="27dp"
         android:layout_below="@+id/add"
         android:layout_alignParentLeft="true"
