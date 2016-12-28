@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -20,21 +22,24 @@ public class AddItems extends AppCompatActivity {
 
     private EditText name;
     private EditText price;
+    private LinearLayout switchHolder;
     private TextView itemList;
 
     private ArrayList<Person> people;
     private ArrayList<Item> items;
+    private ArrayList<ToggleButton> switches;
 
     private final static String TAG = "BillSplitter";
 
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d(TAG, "Attemping to create new activity");
+        Log.d(TAG, "Attempting to create new activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_items);
 
         name = (EditText) findViewById(R.id.itemName);
         price = (EditText) findViewById(R.id.itemPrice);
+        switchHolder = (LinearLayout) findViewById(R.id.switchHolder);
         itemList = (TextView) findViewById(R.id.itemList);
 
         people = new ArrayList<>(0);
@@ -46,6 +51,18 @@ public class AddItems extends AppCompatActivity {
         for(String n:names){
             Person p = new Person(n);
             people.add(p);
+        }
+
+        // make array of switches, one for each person
+        switches = new ArrayList<>(names.size());
+        for(int i = 0; i < switches.size(); i++){
+            ToggleButton newButton = new ToggleButton(this);
+            newButton.setText(names.get(i));
+            newButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            newButton.setId(i);
+            switches.add(newButton);
+            switchHolder.addView(newButton);
+            Log.d(TAG, "Button for "+names.get(i)+" created");
         }
         Log.d(TAG, "Activity successfully created");
 
@@ -69,8 +86,9 @@ public class AddItems extends AppCompatActivity {
         if(items.size()==1){
             itemList.setText(newItemName);
         }
-        itemList.setText(itemList.getText()+"\n"+newItemName);
-
+        else {
+            itemList.setText(itemList.getText() + "\n" + newItemName);
+        }
         Log.d(TAG, "Item added to the list");
         name.setText("");
         price.setText("");
