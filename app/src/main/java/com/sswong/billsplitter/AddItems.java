@@ -29,6 +29,7 @@ public class AddItems extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.d(TAG, "Attemping to create new activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_items);
 
@@ -46,6 +47,7 @@ public class AddItems extends AppCompatActivity {
             Person p = new Person(n);
             people.add(p);
         }
+        Log.d(TAG, "Activity successfully created");
 
     }
 

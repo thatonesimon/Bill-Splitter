@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d(TAG, "Finished adding names, moving onto adding items");
         Intent intent = new Intent(MainActivity.this, AddItems.class);
-        intent.putExtra("com.sswong.billsplitter.PEOPLE", people);
+        intent.putExtra("PEOPLE", people);
         startActivity(intent);
     }
 
