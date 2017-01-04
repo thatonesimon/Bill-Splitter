@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -52,17 +53,11 @@ public class AddItems extends AppCompatActivity {
             Person p = new Person(n);
             people.add(p);
         }
-
+        Log.d(TAG, "Adding button for each name...");
         // make array of switches, one for each person
         switches = new ArrayList<>(names.size());
-        for(int i = 0; i < switches.size(); i++){
-            ToggleButton newButton = new ToggleButton(this);
-            newButton.setText(names.get(i));
-            newButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            newButton.setId(i);
-            switches.add(newButton);
-            switchHolder.addView(newButton);
-            Log.d(TAG, "Button for "+names.get(i)+" created");
+        for(int i = 0; i < names.size(); i++){
+            makeSwitch(i);
         }
         Log.d(TAG, "Activity successfully created");
 
@@ -79,7 +74,14 @@ public class AddItems extends AppCompatActivity {
             Toast.makeText(this, "Enter a valid price", Toast.LENGTH_SHORT).show();
             return;
         }
-        Item i = new Item(newItemName,newItemPrice,people);
+
+        ArrayList<Person> peopleSplitting = new ArrayList<>(0);
+        for(int j = 0; j < people.size(); j++){
+            if(switches.get(j).isChecked()){
+                peopleSplitting.add(people.get(j));
+            }
+        }
+        Item i = new Item(newItemName,newItemPrice,peopleSplitting);
         items.add(i);
 
         // update itemList
@@ -90,8 +92,23 @@ public class AddItems extends AppCompatActivity {
             itemList.setText(itemList.getText() + "\n" + newItemName);
         }
         Log.d(TAG, "Item added to the list");
+
+        // reset text fields and switches
         name.setText("");
         price.setText("");
+        for(int j = 0; j < people.size(); j++){
+            switches.get(j).setChecked(false);
+        }
+    }
+
+    private void makeSwitch(final int i){
+        final ToggleButton newSwitch = new ToggleButton(this);
+        newSwitch.setText(people.get(i).getName());
+        newSwitch.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        newSwitch.setId(i);
+        switches.add(newSwitch);
+        switchHolder.addView(newSwitch);
+        Log.d(TAG, "Button for "+people.get(i).getName()+" created");
     }
 
 }
