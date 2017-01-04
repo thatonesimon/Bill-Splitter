@@ -46,12 +46,10 @@ public class MainActivity extends AppCompatActivity {
         people.add(newName);
 
         // update names
-        if(people.size()==1){
-            names.setText(newName);
+        if(people.size() == 1){
+            names.setText("");
         }
-        else {
-            names.setText(names.getText() + "\n" + newName);
-        }
+        names.setText(names.getText()+newName+"\n");
 
         Log.d(TAG, "Name added to the list");
         name.setText("");

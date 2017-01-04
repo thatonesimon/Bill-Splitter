@@ -54,4 +54,12 @@
         android:id="@+id/itemList"
         android:layout_weight="0.62" />
 
+    <Button
+        android:text="Finished"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/finished"
+        android:layout_gravity="right"
+        android:onClick="finished"/>
+
 </LinearLayout>

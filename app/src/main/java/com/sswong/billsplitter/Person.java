@@ -14,6 +14,7 @@ public class Person {
 
     Person(String name){
         this.name = name;
+        itemsSplit = new ArrayList<>(0);
     }
 
     public void addItem(Item i){
