@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +13,10 @@
         android:id="@+id/itemName"
         android:layout_row="2"
         android:layout_column="0"
-        android:hint="Enter item name" />
+        android:hint="Enter item name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,36 +26,55 @@
         android:id="@+id/itemPrice"
         android:layout_row="1"
         android:layout_column="0"
-        android:hint="Enter item price" />
+        android:hint="Enter item price"
+        android:layout_below="@+id/itemName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:text="Add Item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addItem"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:onClick="addItem"
+        android:layout_gravity="right"
+        android:layout_below="@+id/scroller"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp" />
 
     <HorizontalScrollView
+        android:id="@+id/scroller"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/itemPrice"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/switchHolder"></LinearLayout>
+            android:id="@+id/switchHolder" />
 
     </HorizontalScrollView>
-
-    <Button
-        android:text="Add Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_row="2"
-        android:layout_column="0"
-        android:onClick="addItem"
-        android:layout_gravity="right" />
 
     <TextView
         android:text="No items yet!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/itemList"
-        android:layout_weight="0.62" />
+        android:layout_weight="0.62"
+        android:layout_below="@+id/addItem"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <Button
         android:text="Finished"
@@ -60,6 +82,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/finished"
         android:layout_gravity="right"
-        android:onClick="finished"/>
+        android:onClick="finished"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp" />
 
-</LinearLayout>
+</RelativeLayout>

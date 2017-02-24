@@ -18,7 +18,7 @@ public class Item {
         this.price = price;
         this.whoSplit = whoSplit;
         this.numSplit = whoSplit.size();
-        this.pricePerPerson = price/numSplit;
+        this.pricePerPerson = Double.parseDouble(String.format("%.2f",price/numSplit));
     }
 
     public String getName(){
